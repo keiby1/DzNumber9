@@ -11,7 +11,7 @@ public class WarriorArrayFactory {
     public ArrayList<Warrior> CreateArrayWarrior(ObservableList<String> squad, String namesquad) {
         ArrayList<Warrior> warrior = new ArrayList<>();
         for (int i = 0; i < squad.size(); i++) {
-            if (squad.get(i).equals("Берсерк"))
+            if (squad.get(i).equals("Берсерк")) //switch. при изменении классов бойцов придется менять и это. №5
                 warrior.add(new Berserk());
             else if (squad.get(i).equals("Лучник"))
                 warrior.add(new Archer());
