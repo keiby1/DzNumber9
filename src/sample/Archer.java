@@ -1,11 +1,11 @@
-package sample;
+package sample; //разбить по пакетам
 
 import java.util.Objects;
 
 /**
  * Created by lushi on 21.11.2016.
  */
-public class Archer implements Warrior {
+public class Archer implements Warrior { //почему не хотите вынести одно и то же в абстрактный класс?
     private String name, squad;
     private int health = 80;
     private int damage = 80;
@@ -39,7 +39,7 @@ public class Archer implements Warrior {
     @Override
     public Archer clone() {
         Archer w = new Archer();
-        w.name = this.name;
+        w.name = this.name; //нет смысла клонировать строки - они неизменяемы
         return w;
     }
 

@@ -6,7 +6,7 @@ package sample;
 public class WarriorFactory {
     public Warrior CreateWarrior(String type) {
         Warrior warrior = null;
-        switch (type) {
+        switch (type) { //при изменении классов бойцов придется менять и это. №6. Это рекорд!
             case "Лучник":
                 warrior = new Archer();
                 break;

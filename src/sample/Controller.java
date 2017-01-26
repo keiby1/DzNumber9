@@ -8,7 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
 
-public class Controller {
+public class Controller { //если это контроллер, то где представление?
     //список элементов управления
     @FXML
     private Button buttonAddWarrior1;
@@ -45,7 +45,7 @@ public class Controller {
 
     private void addWarrior(String getValueComboBox, ObservableList<String> listSquad, ListView<String> listViewSquad) {
         try {
-            if (getValueComboBox.equals("Берсерк"))
+            if (getValueComboBox.equals("Берсерк")) //switch. при изменении классов бойцов придется менять и это. №1
                 listSquad.add("Берсерк");
             else if (getValueComboBox.equals("Лучник"))
                 listSquad.add("Лучник");
@@ -60,7 +60,7 @@ public class Controller {
     }
 
     private void outInfo(String selectedItem) {
-        if (selectedItem.equals("Берсерк"))
+        if (selectedItem.equals("Берсерк")) //switch. при изменении классов бойцов придется менять и это. №2
             ShowAlert(selectedItem, new Berserk().getInfo());
         else if (selectedItem.equals("Лучник"))
             ShowAlert(selectedItem, new Archer().getInfo());
@@ -70,7 +70,7 @@ public class Controller {
             ShowAlert(selectedItem, new Viking().getInfo());
     }
 
-    private void step(Warrior w1, Warrior w2, Squad squad1, Squad squad2) {
+    private void step(Warrior w1, Warrior w2 /* лишние параметры */, Squad squad1, Squad squad2) {
         w2 = squad2.getRandomWarrior();
         w1 = squad1.getRandomWarrior();
 
@@ -83,11 +83,11 @@ public class Controller {
         comboBoxArrayWarrior1.setItems(FXCollections.observableArrayList("Берсерк",
                 "Лучник",
                 "Викинг",
-                "Защитник"));
+                "Защитник")); //при изменении классов бойцов придется менять и это. №3
         comboBoxArrayWarrior2.setItems(FXCollections.observableArrayList("Берсерк",
                 "Лучник",
                 "Викинг",
-                "Защитник"));
+                "Защитник")); //при изменении классов бойцов придется менять и это. №4
 
         buttonAddWarrior1.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
@@ -99,7 +99,7 @@ public class Controller {
 
         buttonAddWarrior2.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent mouseEvent) {
+            public void handle(MouseEvent mouseEvent) { //дублирование. выносите в отдельные методы то, что повторяется, и при изменении вам не придется менять одно и то же в куче мест
                 String getValueComboBox = comboBoxArrayWarrior2.getValue();
                 addWarrior(getValueComboBox, listSquad2, listViewSquad2);
             }
@@ -125,7 +125,7 @@ public class Controller {
                                 break;
                             }
 
-                            step(w2, w1, squad2, squad1);
+                            step(w2, w1, squad2, squad1); //дублирование
                             if (!squad1.hasAliveWarriors()) {
                                 textArea.appendText("Вторая команда победила!\r\n");
                                 break;
@@ -148,7 +148,7 @@ public class Controller {
 
         removeWarriorButton2.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent mouseEvent) {
+            public void handle(MouseEvent mouseEvent) { //дублирование
                 int selectedId = listViewSquad2.getSelectionModel().getSelectedIndex();
                 String itemToRemove = listViewSquad2.getSelectionModel().getSelectedItems().toString();
                 listViewSquad2.getItems().remove(selectedId);
@@ -166,7 +166,7 @@ public class Controller {
 
         infoButton2.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent mouseEvent) {
+            public void handle(MouseEvent mouseEvent) { //дублирование
                 String selectedItem = listViewSquad2.getSelectionModel().getSelectedItem();
                 outInfo(selectedItem);
             }
